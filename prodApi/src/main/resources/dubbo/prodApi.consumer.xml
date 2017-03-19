@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 消费者应用信息，用于提供依赖关系 -->
+    <dubbo:application name="prodSvcConsumer" />
+    <!-- 注册地址，用于消费者寻找服务,, 此处可以配置多个zookeeper -->
+    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" />
+    <!-- 超时设置 -->
+    <dubbo:consumer timeout="5000" />
+
+    <!-- 引用的服务 -->
+    <dubbo:reference id="prodService" interface="com.boli.service.intfc.prod.IProdSvc" version="1.0.0" />
+
+</beans>
